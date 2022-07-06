@@ -3,33 +3,45 @@
 <head>
   <title>WEB1 - JavaScript</title>
   <meta charset="utf-8">
+  <script type="text/javascript">
+    var Links = {
+      setColor:function(color) {
+        var alist = document.querySelectorAll('a');
+        var i = 0;
+        while(i < alist.length) {
+          alist[i].style.color = color;
+          i++;
+        }
+      }
+    }
+
+    var Body = {
+      setColor:function(color) {
+        document.querySelector('body').style.color = color;
+      },
+      setBackgroundColor:function(color) {
+        document.querySelector('body').style.backgroundColor = color;
+      }
+    }
+
+    function darklightHandler(self) {
+      if(self.value === 'dark') {
+        Body.setBackgroundColor('black');
+        Body.setColor('white');
+        Links.setColor('powderblue')
+        self.value = 'light'
+      } else {
+        Body.setBackgroundColor('white');
+        Body.setColor('black');
+        Links.setColor('blue')
+        self.value = 'dark'
+      }
+    }
+  </script>
 </head>
 <body>
   <h1><a href="index.html">WEB</a></h1>
-  <input type="button" value="dark" onclick="
-    var target = document.querySelector('body');
-    var alist = document.querySelectorAll('a');
-
-    if(this.value === 'dark') {
-      target.style.backgroundColor = 'black';
-      target.style.color = 'white';
-      this.value = 'light'
-      var i = 0;
-      while(i < alist.length) {
-        alist[i].style.color = 'powderblue';
-        i++;
-      }
-    } else {
-      target.style.backgroundColor = 'white';
-      target.style.color = 'black';
-      this.value = 'dark'
-      var i = 0;
-      while(i < alist.length) {
-        alist[i].style.color = 'blue';
-        i++;
-      }
-    }
-  ">
+  <input type="button" value="dark" onclick="darklightHandler(this)">
   <div id="grid">
     <ol>
       <li><a href="1.html">HTML</a></li>
